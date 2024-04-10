@@ -1,0 +1,78 @@
+Approach:
+The Haskell project created aims to create a prefix notation expression calculator that
+parses the prefix expression given by the user. Then the expression is evaluated and a
+history of previous expressions is kept track of through their IDs and referenced in
+history. My approach was to write pseudo code first and break down the code into
+functions that can handle various operands and operators. I thought of the major
+functions such as history, parsing, and evaluating and broke them down into smaller
+parts to work on. For example, the operator functions can be broken down into binary
+and unary and the history can be broken down into adding to history, referencing history,
+and keeping track of history. I thought of what data types would be useful for
+expressions and history entries. Then I implemented parsing functions for the
+expressions, evaluation functions, and managing the history after a valid entry was
+made.
+Organization:
+I organized the function through data types, parsing functions, evaluation functions,
+history management, and looping. The data types were Expr for expressions,
+HistoryEntry for history entries, and History as a list of entries. Parsing functions were
+created in aims to parse prefix expressions into expression trees. This is done through
+ParseExpressionHelper, parseParentheses, ParseValues, etc. Evaluation function
+evaluateExpression was used to create the expression tree. History management
+included addEntryToHistory, findEntryInHistory, etc. This was used to manage the
+history of evaluated functions. The main loop drives the program and the main and loop
+functions handle the user input to evaluate the expression and maintain a continuous
+loop until the user exits. I organized the project this way as it was the most top-down
+approach that I felt could help me understand the logic of the program and also break
+apart challenging aspects. This also helped me understand edge cases that can occur
+and how to solve them by figuring out what should work and then working around what
+could not work.
+Problems:
+I encountered many challenging problems while working on this program. I found the
+parsing logic hard to understand and manipulate at first and spent most of my time on
+the pseudocode to evaluate the user-inputted expressions. I encountered challenges in
+the whitespace, for example + 9 8 vs +9 8, positioning of numbers and operators, and
+working with longer, complex expressions. Understanding the unary operator posed a
+challenge as well. During evaluation, I encountered problems with multiplying/dividing
+by 0 and the correct order of evaluation. Lastly, retrieving the IDs of the history was
+challenging as I had problems attaining the right ID after the user entered another
+expression.
+Solutions:
+Parsing logic: By adding checks for valid inputs and handling edge cases that appeared
+through my testing, I was able to correct the logic and refactor it. The whitespace issue
+was solved through isSpace and ordering was corrected by isDigit.
+Evaluation logic: By adding checks for zeros in the input, I was able to solve that
+problem. I also remedied this issue by introducing parentheses so I could see the order
+in the prefix expression could be evaluated.
+History logic: I implemented functions using list operations that solved the issues that I
+had to ensure correct indexing and handling of the history reference errors.
+Lessons learned:
+I gained an immense undertaking of Haskell syntax through pattern matching, data
+types, and structures as well as type signatures. I understood the idea of tail recursion
+and made my variables immutable. Recursion was a big aspect that I have learned and
+allowed me to explore the range of functions that Haskell provides. Building expression
+trees is another aspect that I learned as this now equips me with a visual idea of
+evaluating the prefix expressions. All in all, I gained a thorough understanding of
+functional programming through the use of pure functions and immutable structures. I
+also learned how to test my code and find edge cases. Lastly, I learned how to
+successfully time manage a large project and how to pseudocode to complete the
+project.
+Unsolved Problems: Evaluate expressions that do not have a whitespace or have a
+whitespace in between the “$” and the number.
+For example: +*123 and + $ 1 2
+I was unable to break apart expressions that do not have any whitespace or have a
+whitespace in between the history ID and found this the most difficult to remedy. The
+lack of delimiters between the operators and operands made the parser unable to
+distinguish between the operators and operands accurately. I also could not figure out
+how to understand if the user meant to make the numbers multiple digits or just singular
+ones, for example, + * 12 3 4. Though this is not unsolvable, it would require more
+complex parsing that I was unable to complete.
+I tried to solve this problem through whitespace handling and my code currently skips
+over it using isSpace and the parseExpressionHelper function. However, this only
+assumes that whitespace is a delimiter between tokens. Tokenizing the input string
+without relying on whitespace could be an approach to solve this. This would involve
+breaking apart the string based on their position. Implementing this and adding more
+explicit rules for valid expressions to guide the parsing process would help.
+Given more time, I would enhance the tokenization to work with more than whitespace. I
+would also add strict rules for valid prefix expressions to ensure a clear distinction
+between the operator and operands. Lastly, I would stress test and refine to validate the
+tokenization and rule process.
